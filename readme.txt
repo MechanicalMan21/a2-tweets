@@ -20,4 +20,4 @@ N/A
 
 
 5. Is there anything special we need to know in order to run your code?
-Only the first two getters in ts/tweet.ts are functional.
+Due to time constraints, only the first two getters in ts/tweet.ts are functional. 
