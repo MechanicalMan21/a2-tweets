@@ -10,13 +10,37 @@ class Tweet {
 	//returns either 'live_event', 'achievement', 'completed_event', or 'miscellaneous'
     get source():string {
         //TODO: identify whether the source is a live event, an achievement, a completed event, or miscellaneous.
-        return "unknown";
+
+        let textLower = this.text.toLowerCase();
+        if (textLower.startsWith("just completed") || textLower.startsWith("just posted")) {
+            return "completed_event";
+        } else if (textLower.startsWith("watch my") || textLower.includes("#rklive")) {
+            return "live_event";
+        } else if (textLower.startsWith("achieved a new") || textLower.startsWith("i just set a goal")) {
+            return "achievement";
+        } else {
+            return "miscellaneous";
+        }
     }
 
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
         //TODO: identify whether the tweet is written
-        return false;
+        let textLower = this.text.toLowerCase();
+        if (textLower.includes("with @runkeeper. check it out!")) {
+            return false;
+        }
+        if (textLower.includes("tomtom mysports watch")) {
+            return false;
+        }
+        if (textLower.includes("watch my") && textLower.includes("live")) {
+            return false;
+        }
+        if (textLower.includes("achieved a new")) {
+            return false;
+        }
+
+        return true;
     }
 
     get writtenText():string {
